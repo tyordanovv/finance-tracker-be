@@ -15,7 +15,6 @@ admin.initializeApp({
 const db = admin.database();
 const transactionsRef = db.ref('transactions');
 
-// Add a transaction
 app.post('/transactions', (req, res) => {
   const { id, type, value, note } = req.body;
   transactionsRef.child(id).set({ type, value, note })
@@ -23,7 +22,6 @@ app.post('/transactions', (req, res) => {
     .catch(error => res.status(500).send(error));
 });
 
-// Delete a transaction
 app.delete('/transactions/:id', (req, res) => {
   const { id } = req.params;
   transactionsRef.child(id).remove()
